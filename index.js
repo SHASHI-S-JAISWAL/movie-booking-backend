@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 const getMovies = require("./routes/getMovies");
 const seats = require("./routes/seats");
 const reservations = require("./routes/reservations");
+const mybooking = require("./routes/mybooking");
 
 var app = express();
 app.use(function (req, res, next) {
@@ -27,6 +28,7 @@ app.listen(5000, function () {
 app.use("/movies", getMovies);
 app.use("/seats", seats);
 app.use("/reservations", reservations);
+app.use("/my-bookings", mybooking);
 
 app.get("/url", async (req, res, next) => {
   try {

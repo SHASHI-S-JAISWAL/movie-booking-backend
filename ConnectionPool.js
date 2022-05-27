@@ -1,10 +1,14 @@
 // DB.js config for your database
 const sql = require("mysql");
 const config = {
-  user: "sql6490919",
-  password: "",
-  host: "sql6.freesqldatabase.com",
-  database: "sql6490919",
+  user: "testserver1996",
+  password: "testserver1996",
+  host: "db4free.net",
+  database: "testserver1996",
+  connectionLimit: 1000,
+  connectTimeout: 60 * 60 * 1000,
+  acquireTimeout: 60 * 60 * 1000,
+  timeout: 60 * 60 * 1000,
   multipleStatements: true,
 };
 const pool = new sql.createPool(config);

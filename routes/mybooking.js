@@ -2,22 +2,19 @@ const express = require("express");
 const router = express.Router();
 const { pool } = require("../ConnectionPool");
 
-router.post("/reserve-seat", async (req, res, next) => {
-  const { movieId, seatId, userId } = req.query;
+router.get("", async (req, res, next) => {
+  const { userId } = req.query;
   try {
     const data = await pool.query(
-      `INSERT INTO reservations ( seatId, movieId, userId) VALUES ('${seatId}', '${movieId}', '${userId}');`,
+      `select reservations.seatId, movies.* from reservations , movies where reservations.userID = "${userId}" && movies.id = reservations.movieId ;`,
       function (err, result) {
         if (err) {
           console.log(err);
         } else {
-          console.log(result);
           res.json(result);
         }
       }
     );
-    // console.log(data);
-    // res.json(result);
   } catch (err) {
     res.status(500);
     res.send(err.message);
